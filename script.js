@@ -2,6 +2,7 @@ const apiKey = "D73YE4YGUGSSF6JMUD356SWUD";
 const apiUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
 
 
 async function checkWeather(city){
@@ -20,6 +21,22 @@ async function checkWeather(city){
         document.querySelector(".humidity").innerHTML = `${data.currentConditions.humidity}%`;
         document.querySelector(".wind").innerHTML = `${data.currentConditions.windspeed} kph`;
 
+        if(data.currentConditions.icon == "cloudy"){
+            weatherIcon.src = "images/clouds.png";
+        }else if (data.currentConditions.icon == "clear-day"){
+            weatherIcon.src = "images/clear.png";
+        }
+        else if (data.currentConditions.icon == "rain"){
+            weatherIcon.src = "images/rain.png";
+        }
+        else if (data.currentConditions.icon == "showers-day"){
+            weatherIcon.src = "images/drizzle.png";
+        }
+        else if (data.currentConditions.icon == "fog"){
+            weatherIcon.src = "images/mist.png";
+        }
+
+
         return data;
     } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -31,7 +48,3 @@ searchBtn.addEventListener("click", () => {
 
 })
 
-// Wait for DOM to load before running the script
-// // document.addEventListener('DOMContentLoaded', () => {
-//     checkWeather();
-// });

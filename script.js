@@ -14,7 +14,7 @@ async function checkWeather(city){
         }
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         
         document.querySelector(".city").innerHTML = data.address;
         document.querySelector(".temp").innerHTML = `${Math.round(data.currentConditions.temp)}°C`;
@@ -35,7 +35,7 @@ async function checkWeather(city){
         else if (data.currentConditions.icon == "fog"){
             weatherIcon.src = "images/mist.png";
         }
-
+        document.querySelector(".weather").style.display = "block";
 
         return data;
     } catch (error) {
